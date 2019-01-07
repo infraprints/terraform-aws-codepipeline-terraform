@@ -1,0 +1,2 @@
+# terraform-aws-acm-certificate
+
