@@ -21,7 +21,6 @@ module "example" {
   name                 = "${module.label.id}"
   artifacts_store      = "${aws_s3_bucket.loc.bucket}"
   artifacts_bucket_arn = "${aws_s3_bucket.loc.arn}"
-  role_arn             = "arn:aws:iam::664504539988:role/TerraformAdminRole"
   notification_arn     = "${aws_sns_topic.notification.arn}"
 
   owner      = "jrbeverly"

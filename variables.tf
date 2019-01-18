@@ -1,12 +1,10 @@
 variable "name" {}
 
-variable "role_arn" {}
 variable "owner" {}
 
 variable "repository" {}
 variable "branch" {}
 
-# variable "codebuild_role_arn" {}
 variable "image" {}
 
 variable "build_timeout" {
@@ -21,14 +19,11 @@ variable "compute_type" {
   default     = "BUILD_GENERAL1_SMALL"
 }
 
-## Rename to artifacts_location
 variable "artifacts_store" {}
 
 variable "environment_variables" {
   type = "list"
 }
-
-# variable "encryption_key" {}
 
 variable "notification_arn" {
   type    = "string"
