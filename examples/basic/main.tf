@@ -8,7 +8,8 @@ module "label" {
 }
 
 resource "aws_s3_bucket" "loc" {
-  bucket = "${module.label.id}-artifacts"
+  bucket        = "${module.label.id}-artifacts"
+  force_destroy = true
 }
 
 resource "aws_sns_topic" "notification" {

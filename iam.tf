@@ -1,5 +1,6 @@
 resource "aws_iam_role" "terraform" {
   name               = "${var.name}-terraform"
+  #path = "/custom_path"
   description        = "Service-linked role used by Terraform Pipelines for executing terraform files."
   assume_role_policy = "${data.aws_iam_policy_document.terraform_assume_policy.json}"
 }

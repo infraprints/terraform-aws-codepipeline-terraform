@@ -53,21 +53,13 @@ locals {
   }]
 }
 
-data "aws_cloudwatch_log_group" "plan" {
+resource "aws_cloudwatch_log_group" "plan" {
   name = "/aws/codebuild/${aws_codebuild_project.plan.name}"
 }
 
-data "aws_cloudwatch_log_group" "apply" {
+resource "aws_cloudwatch_log_group" "apply" {
   name = "/aws/codebuild/${aws_codebuild_project.apply.name}"
 }
-
-# data "aws_caller_identity" "current" {}
-
-# locals {
-#   account_id           = "${data.aws_caller_identity.current.account_id}"
-#   cloudwatch_plan_arn  = "arn:aws:logs:us-east-1:${local.account_id}:log-group:/aws/codebuild/${aws_codebuild_project.plan.name}:*"
-#   cloudwatch_apply_arn = "arn:aws:logs:us-east-1:${local.account_id}:log-group:/aws/codebuild/${aws_codebuild_project.apply.name}:*"
-# }
 
 resource "aws_codepipeline" "pipeline" {
   name     = "${var.name}"
