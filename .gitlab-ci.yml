@@ -4,13 +4,6 @@ image:
     - "/usr/bin/env"
     - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
-variables:
-  TFLINT_VERSION: v0.7.2
-
-# cache:
-#   paths:
-#     - .terraform
-
 stages:
   - "Validate"
   - "Analysis"
@@ -28,6 +21,6 @@ validate:
 
 analysis:
   stage: "Analysis"
+  image: cardboardci/tflint:edge
   script:
-    - curl -L -o /tmp/tflint.zip https://github.com/wata727/tflint/releases/download/${TFLINT_VERSION}/tflint_linux_amd64.zip && unzip /tmp/tflint.zip -d /usr/local/bin
     - tflint
