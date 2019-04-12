@@ -3,7 +3,7 @@ name: AWS CodePipeline for Terraform execution
 slug: codepipeline-terraform
 project: infraprints
 namespace: [terraform, aws]
-description: Describes a container auto-scaling policy controlled by a SQS resource.
+description: Provision a deployment pipeline for executing Terraform scripts.
 license:
   name: MIT
 tags:
