@@ -7,9 +7,7 @@ description: Describes a container auto-scaling policy controlled by a SQS resou
 license:
   name: MIT
 tags:
-  - infrastructure
+  - terraform
+  - terraform-module
   - aws
-  - aws-sqs
-  - aws-ecs
-  - aws-cloudwatch-alarms
-  - autoscaling
+  - 
