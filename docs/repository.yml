@@ -1,5 +1,5 @@
 ---
-name: Terraform AWS ECS Autoscaling by SQS
+name: AWS CodePipeline for Terraform execution
 slug: codepipeline-terraform
 project: infraprints
 namespace: [terraform, aws]
