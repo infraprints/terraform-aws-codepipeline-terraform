@@ -10,4 +10,5 @@ tags:
   - terraform
   - terraform-module
   - aws
-  - 
+  - aws-codepipeline
+  - aws-codebuild
