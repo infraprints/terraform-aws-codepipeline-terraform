@@ -1,6 +1,6 @@
 ---
 name: Terraform AWS ECS Autoscaling by SQS
-slug: sqs-ecs-autoscaling
+slug: codepipeline-terraform
 project: infraprints
 namespace: [terraform, aws]
 description: Describes a container auto-scaling policy controlled by a SQS resource.
