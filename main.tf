@@ -99,7 +99,6 @@ resource "aws_codepipeline" "pipeline" {
       provider = "CodeBuild"
       version  = "1"
 
-      role_arn         = "${aws_iam_role.terraform.arn}"
       input_artifacts  = ["source"]
       output_artifacts = ["plan"]
 
@@ -136,7 +135,6 @@ resource "aws_codepipeline" "pipeline" {
       provider = "CodeBuild"
       version  = "1"
 
-      role_arn        = "${aws_iam_role.terraform.arn}"
       input_artifacts = ["source", "plan"]
 
       configuration {
