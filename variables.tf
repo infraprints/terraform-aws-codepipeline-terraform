@@ -38,6 +38,6 @@ variable "buildspec" {
 
   default = {
     plan  = ".buildspec/plan.yml"
-    apply = ".buildspec/plan.yml"
+    apply = ".buildspec/apply.yml"
   }
 }
