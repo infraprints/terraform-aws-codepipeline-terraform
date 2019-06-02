@@ -1,7 +1,7 @@
 resource "aws_iam_role" "codebuild" {
   name               = "${var.name}-codebuild"
   description        = "Service-linked role used by Terraform Pipelines to enable integration of other AWS services with CodeBuild."
-  assume_role_policy = "${data.aws_iam_policy_document.codebuild_assume_policy.json}"
+  assume_role_policy = data.aws_iam_policy_document.codebuild_assume_policy.json
 }
 
 data "aws_iam_policy_document" "codebuild_assume_policy" {
@@ -21,15 +21,15 @@ data "aws_iam_policy_document" "codebuild_assume_policy" {
 
     principals {
       type        = "AWS"
-      identifiers = ["${aws_iam_role.codepipeline.arn}"]
+      identifiers = [aws_iam_role.codepipeline.arn]
     }
   }
 }
 
 resource "aws_iam_role_policy" "codebuild" {
   name   = "CodeBuildPolicy"
-  role   = "${aws_iam_role.codebuild.id}"
-  policy = "${data.aws_iam_policy_document.codebuild.json}"
+  role   = aws_iam_role.codebuild.id
+  policy = data.aws_iam_policy_document.codebuild.json
 }
 
 data "aws_iam_policy_document" "codebuild" {
@@ -49,7 +49,7 @@ data "aws_iam_policy_document" "codebuild" {
       "codebuild:UpdateProject",
     ]
 
-    resources = ["${aws_codebuild_project.apply.id}", "${aws_codebuild_project.plan.id}"]
+    resources = [aws_codebuild_project.apply.id, aws_codebuild_project.plan.id]
   }
 
   statement {
@@ -76,7 +76,7 @@ data "aws_iam_policy_document" "codebuild" {
     sid       = "S3BucketList"
     effect    = "Allow"
     actions   = ["s3:ListBucket"]
-    resources = ["${var.artifacts_bucket_arn}"]
+    resources = [var.artifacts_bucket_arn]
   }
 }
 
@@ -85,7 +85,7 @@ data "aws_iam_policy_document" "codebuild" {
 resource "aws_iam_role" "codepipeline" {
   name               = "${var.name}-codepipeline"
   description        = "Service-linked role used by Terraform Pipelines to enable integration of other AWS services with CodePipeline."
-  assume_role_policy = "${data.aws_iam_policy_document.codepipeline_assume_policy.json}"
+  assume_role_policy = data.aws_iam_policy_document.codepipeline_assume_policy.json
 }
 
 data "aws_iam_policy_document" "codepipeline_assume_policy" {
@@ -102,8 +102,8 @@ data "aws_iam_policy_document" "codepipeline_assume_policy" {
 
 resource "aws_iam_role_policy" "codepipeline" {
   name   = "CodePipelinePolicy"
-  role   = "${aws_iam_role.codepipeline.id}"
-  policy = "${data.aws_iam_policy_document.codepipeline.json}"
+  role   = aws_iam_role.codepipeline.id
+  policy = data.aws_iam_policy_document.codepipeline.json
 }
 
 data "aws_iam_policy_document" "codepipeline" {
@@ -123,19 +123,20 @@ data "aws_iam_policy_document" "codepipeline" {
       "codebuild:StartBuild",
     ]
 
-    resources = ["${aws_codebuild_project.plan.id}", "${aws_codebuild_project.apply.id}"]
+    resources = [aws_codebuild_project.plan.id, aws_codebuild_project.apply.id]
   }
 
   statement {
     effect    = "Allow"
     actions   = ["sns:Publish"]
-    resources = ["${var.notification_arn}"]
+    resources = [var.notification_arn]
   }
 
   statement {
     sid       = "AssumeTerraformRole"
     effect    = "Allow"
     actions   = ["sts:AssumeRole"]
-    resources = ["${aws_iam_role.codebuild.arn}"]
+    resources = [aws_iam_role.codebuild.arn]
   }
 }
+
