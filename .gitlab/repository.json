@@ -1,5 +1,5 @@
 {
   "name": "terraform-aws-codepipeline-terraform",
-  "url": "https://gitlab.com/infraprints/terraform-aws-codepipeline-terraform",
+  "url": "https://gitlab.com/infraprints/modules/terraform-aws-codepipeline-terraform",
   "status": "mirror"
 }
